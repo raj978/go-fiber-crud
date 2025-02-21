@@ -6,20 +6,32 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// UserHandler handles user-related HTTP requests.
 type UserHandler struct {
 	userService UserService
 }
 
+// NewUserHandler registers the user routes and attaches the JWT middleware to protect them.
 func NewUserHandler(userRoute fiber.Router, userService UserService) {
 	handler := &UserHandler{
 		userService: userService,
 	}
 
-	userRoute.Get("", handler.getUsers)
+	// Unprotected routes
 	userRoute.Post("", handler.createUser)
-	userRoute.Get("/:userID", handler.getUser)
-	userRoute.Put("/:userID", handler.checkIfUserExistsMiddleware, handler.updateUser)
-	userRoute.Delete("/:userID", handler.checkIfUserExistsMiddleware, handler.deleteUser)
+
+	// Wrap all routes in a JWT-protected group
+	// protected := userRoute.Group("/", JWTMiddleware)
+
+	// protected.Get("", handler.getUsers)
+	// protected.Get("/:userID", handler.JWTMiddleware, handler.getUser)
+	// protected.Put("/:userID", handler.checkIfUserExistsMiddleware, handler.JWTMiddleware, handler.updateUser)
+	// protected.Delete("/:userID", handler.checkIfUserExistsMiddleware, handler.JWTMiddleware, handler.deleteUser)
+
+	userRoute.Get("", handler.getUsers)
+	userRoute.Get("/:userID", JWTMiddleware, handler.getUser)
+	userRoute.Put("/:userID", handler.checkIfUserExistsMiddleware, JWTMiddleware, handler.updateUser)
+	userRoute.Delete("/:userID", handler.checkIfUserExistsMiddleware, JWTMiddleware, handler.deleteUser)
 }
 
 // Gets all users.

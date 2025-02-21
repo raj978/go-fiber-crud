@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"example/go-fiber-mongodb/database"
+	"github.com/raj978/go-fiber-crud/database"
 	"log"
 	"time"
 

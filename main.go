@@ -1,10 +1,10 @@
 package main
 
 import (
-	"example/go-fiber-mongodb/config"
-	"example/go-fiber-mongodb/database"
-	"example/go-fiber-mongodb/internal/user"
 	"fmt"
+	"github.com/raj978/go-fiber-crud/config"
+	"github.com/raj978/go-fiber-crud/database"
+	"github.com/raj978/go-fiber-crud/internal/user"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -25,7 +25,7 @@ func main() {
 
 	// Create a new Fiber instance.
 	app := fiber.New(fiber.Config{
-		AppName:      "go-fiber-mongodb",
+		AppName:      "go-fiber-crud",
 		ServerHeader: "Fiber",
 	})
 

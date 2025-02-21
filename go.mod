@@ -1,9 +1,10 @@
-module example/go-fiber-mongodb
+module github.com/raj978/go-fiber-crud
 
 go 1.20
 
 require (
 	github.com/gofiber/fiber/v2 v2.48.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/pkg/errors v0.9.1
 	go.mongodb.org/mongo-driver v1.12.0
 )

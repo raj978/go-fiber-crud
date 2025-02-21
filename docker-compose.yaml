@@ -4,7 +4,7 @@ services:
   app:
     tty: true
     restart: always
-    image: go-fiber-mongodb:latest
+    image: go-fiber-crud:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
       - application
     depends_on:
       - mongodb
-    command: ["go", "run", "main.go"]
+    command: [ "go", "run", "main.go" ]
 
   mongodb:
     restart: always
@@ -30,6 +30,7 @@ services:
 
 networks:
   application:
+
 
 volumes:
   mongodb:
